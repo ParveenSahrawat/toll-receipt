@@ -5,7 +5,7 @@ const tollReceiptSchema = new mongoose.Schema({
         type: String,
         required: true,
         lowercase: true,
-        match: [/[A-Z]{2,3}_[0-9]{1,2}_[A-Z]{1,3}_\d{4}$/i, 'Vehicle number is invalid']
+        match: [/^[A-Z]{2}_[0-9]{1,2}_[A-Z]{1,3}_\d{4}$/i, 'Vehicle number is invalid']
     },
     amount: {
         type: Number,
@@ -20,6 +20,10 @@ const tollReceiptSchema = new mongoose.Schema({
             message: `Please enter either 'One Way' or 'Two Way'`
         },
         default: 'One Way'
+    },
+    completed: {
+        type: Boolean,
+        default: false
     },
     createdOn: {
         type: String,
